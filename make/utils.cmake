@@ -1,0 +1,15 @@
+if (utils)
+    return()
+endif()
+
+set(utils true)
+
+function(add_subdirs NAME FOLDER)
+    file(GLOB SUBDIRS RELATIVE ${FOLDER} ${FOLDER}/*)
+    foreach(SUBDIR ${SUBDIRS})
+        if(IS_DIRECTORY ${FOLDER}/${SUBDIR})
+            message(STATUS "Found ${NAME}: ${SUBDIR}")
+            add_subdirectory(${FOLDER}/${SUBDIR})
+        endif()
+    endforeach()
+endfunction(add_subdirs)
