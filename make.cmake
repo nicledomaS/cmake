@@ -2,13 +2,23 @@ if(make_initialize)
     return()
 endif()
 
-make_initialize = true
+set(make_initialize true)
 
-if(NOT MODULES)
-    set(MODULES ${CMAKE_SOURCE_DIR}/modules)
+include(${CMAKE_CURRENT_LIST_DIR}/check_codes/clang_tidy.cmake)
+
+include(${CMAKE_CURRENT_LIST_DIR}/make/link_libraries.cmake)
+include(${CMAKE_CURRENT_LIST_DIR}/make/create_binary.cmake)
+include(${CMAKE_CURRENT_LIST_DIR}/make/executable.cmake)
+include(${CMAKE_CURRENT_LIST_DIR}/make/library.cmake)
+
+include(${CMAKE_CURRENT_LIST_DIR}/make/utils.cmake)
+include(${CMAKE_CURRENT_LIST_DIR}/make/find_modules.cmake)
+include(${CMAKE_CURRENT_LIST_DIR}/make/find_tests.cmake)
+
+if(FIND_MODULES)
+    find_modules()
 endif()
 
-set(SCRIPTS_PATH ${CMAKE_CURRENT_LIST_DIR})
-
-include(${SCRIPTS_PATH}/make/executable.cmake)
-
+if(FIND_TESTS)
+    find_tests()
+endif()
