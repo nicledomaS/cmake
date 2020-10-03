@@ -2,6 +2,8 @@
 # cmake
 Cmake scripts for build c++ projects
 
+## lags
+
 ### `FIND_MODULES`
 Find modules in folder `modules`.
 
@@ -19,8 +21,28 @@ Enable clang-tidy for code analysis.
 
 Default: `OFF`
 Examle: `-DENABLE_TIDY=ON`
+
+## Struct project
+```
+\
+ |--CMakeList.txt
+ |--cmake
+ |--modules
+ |         \ 
+ |          |--Modules1--CMakeLists.txt
+ |          |--Modules2--CMakeLists.txt
+ |
+ |--src
+ |--tests
+         \
+          |--googletests
+          |--test1--CMakeLists.txt
+```
+
+## Examples:
+Executable
 ```cmake
-project(...)
+project(TestApp)
 include(cmake/make.cmake)
 
 #TARGET - project name
@@ -29,11 +51,39 @@ include(cmake/make.cmake)
 #BOOST - list of boost modules to add project
 #MODULES - list of own modules to add project
 #LIBS - list of external modules to add project
-static_library(TestLib1 SOURCES "" THREADS BOOST ... ... MODULES ... ... LIBS ... ...)
-shared_library(TestLib2 SOURCES "" THREADS BOOST ... ... MODULES ... ... LIBS ... ...)
 
-executable(TestName SOURCES "" THREADS BOOST system MODULES TestLib1 TestLib2 LIBS ... ...)
+executable(${PROJECT_NAME}
+            SOURCES ""
+            THREADS
+            BOOST system
+            MODULES Modules1 Modules2
+            LIBS ... ...)
+```
 
+Modules 1
+```cmake
+project(Modules1)
+include(cmake/make.cmake)
+
+static_library(${PROJECT_NAME}
+                SOURCES ""
+                THREADS
+                BOOST ... ...
+                MODULES ... ...
+                LIBS ... ...)
+```
+
+Modules 2
+```cmake
+project(Modules2)
+include(cmake/make.cmake)
+
+shared_library(${PROJECT_NAME} 
+                SOURCES ""
+                THREADS
+                BOOST ... ...
+                MODULES ... ...
+                LIBS ... ...)
 ```
 
 [license-image]: https://img.shields.io/badge/License-Apache%202.0-blue.svg
