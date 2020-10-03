@@ -41,3 +41,14 @@ endfunction(link_libraries)
 function(link_boost TARGET)
     link_libraries(TARGET LIBRARY_NAME Boost ${ARGN})
 endfunction(link_boost)
+
+function(link_thread TARGET)
+    if("${TARGET}" STREQUAL "")
+        set(TARGET ${PROJECT_NAME})
+    endif()
+
+    find_package(Threads REQUIRED)
+
+    message(STATUS "Link threads") 
+    target_link_libraries(${TARGET} ${CMAKE_THREAD_LIBS_INIT})
+endfunction(link_thread)
