@@ -4,10 +4,10 @@ endif()
 
 set(libraries true)
 
-function(StaticLibrary)
+function(static_library)
     create_binary(${TARGET} "static" ${ARGN})
-endfunction(StaticLibrary)
+endfunction(static_library)
 
-function(SharedLibrary)
+function(shared_library)
     create_binary(${TARGET} "shared" ${ARGN})
-endfunction(SharedLibrary)
+endfunction(shared_library)

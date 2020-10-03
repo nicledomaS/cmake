@@ -6,9 +6,18 @@ set(create_binary true)
 
 include(CMakeParseArguments)
 
+
+#TARGET - project name
+#SOURCES - path to source
+#THREADS - threads module to add project
+#BOOST - list of boost modules to add project
+#MODULES - list of own modules to add project
+#LIBS - list of external modules to add project
+
 function(create_binary TARGET TYPE)
-    set(ARRAY SOURCES MODULES BOOST LIBS)
-    cmake_parse_arguments(VALUES "" "" "${ARRAY}" ${ARGN})
+    set(ARRAY THREADS)
+    set(MULTI_ARRAY SOURCES MODULES BOOST LIBS)
+    cmake_parse_arguments(VALUES "" "${ARRAY}" "${MULTI_ARRAY}" ${ARGN})
 
     if("${TARGET}" STREQUAL "")
         message(FATAL_ERROR "Target is empty")
@@ -41,6 +50,10 @@ function(create_binary TARGET TYPE)
         foreach(LIB ${VALUES_LIBS})
             link_libraries(${TARGET} LIBRARY_NAME ${LIB})
         endforeach()
+    endif()
+
+    if(VALUES_THREADS)
+        link_thread(${TARGET})
     endif()
 
     clang_tidy_analysis(${TARGET})
