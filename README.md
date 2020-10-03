@@ -3,13 +3,13 @@
 Cmake scripts for build c++ projects
 
 ### `FIND_MODULES`
-Find modules.
+Find modules in folder `modules`.
 
 Default: `OFF`
 Examle: `-DFIND_MODULES=ON`
 
 ### `FIND_TESTS`
-Find tests.
+Find tests in folder `tests`.
 
 Default: `OFF`
 Examle: `-DFIND_TESTS=ON`

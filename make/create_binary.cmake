@@ -17,7 +17,7 @@ include(CMakeParseArguments)
 function(create_binary TARGET TYPE)
     set(ARRAY THREADS)
     set(MULTI_ARRAY SOURCES MODULES BOOST LIBS)
-    cmake_parse_arguments(VALUES "" "${ARRAY}" "${MULTI_ARRAY}" ${ARGN})
+    cmake_parse_arguments(VALUES "${ARRAY}" "" "${MULTI_ARRAY}" ${ARGN})
 
     if("${TARGET}" STREQUAL "")
         message(FATAL_ERROR "Target is empty")
