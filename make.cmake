@@ -20,5 +20,6 @@ if(FIND_MODULES)
 endif()
 
 if(FIND_TESTS)
+    enable_testing()
     find_tests()
 endif()

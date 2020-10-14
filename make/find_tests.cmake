@@ -11,6 +11,5 @@ endif()
 option(FIND_TESTS "Enable find tests" OFF)
 
 function(find_tests)
-    enable_testing()
     add_subdirs(test ${TESTS_DIR})
 endfunction(find_tests)
