@@ -2,7 +2,7 @@
 # cmake
 Cmake scripts for build c++ projects
 
-## lags
+## Flags
 
 ### `FIND_MODULES`
 Find modules in folder `modules`.
