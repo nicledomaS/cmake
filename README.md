@@ -32,6 +32,7 @@ Examle: `-DENABLE_TIDY=ON`
  |          |--Modules1--CMakeLists.txt
  |          |--Modules2--CMakeLists.txt
  |
+ |--include
  |--src
  |--tests
          \
