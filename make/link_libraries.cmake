@@ -13,6 +13,11 @@ function(link_modules TARGET)
 
     if (ARGN)
         list(REMOVE_DUPLICATES ARGN)
+
+        foreach(ARG ${ARGN})
+            target_include_directories(${TARGET} PUBLIC ${${ARG}_SOURCE_DIR}/include)
+        endforeach()
+
         target_link_libraries(${TARGET} ${ARGN})
     endif()
 endfunction(link_modules)
