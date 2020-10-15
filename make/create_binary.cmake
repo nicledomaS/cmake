@@ -32,7 +32,7 @@ function(create_binary TARGET TYPE)
     elseif("${TYPE}" STREQUAL "static")
         add_library(${TARGET} STATIC ${SOURCES})
     else()
-        message(FATAL_ERROR "Binary type is unknown")
+        message(FATAL_ERROR "Binary type ${TYPE} is unknown")
     endif()
 
     if(VALUES_MODULES)
