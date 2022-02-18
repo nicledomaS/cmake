@@ -10,12 +10,13 @@ include(CMakeParseArguments)
 #TARGET - project name
 #SOURCES - path to source
 #THREADS - threads module to add project
+#CONAN_MODULES - conan module to add project
 #BOOST - list of boost modules to add project
 #MODULES - list of own modules to add project
 #LIBS - list of external modules to add project
 
 function(create_binary TARGET TYPE)
-    set(ARRAY THREADS)
+    set(ARRAY THREADS CONAN_MODULES)
     set(MULTI_ARRAY SOURCES MODULES BOOST LIBS)
     cmake_parse_arguments(VALUES "${ARRAY}" "" "${MULTI_ARRAY}" ${ARGN})
 
@@ -54,6 +55,11 @@ function(create_binary TARGET TYPE)
 
     if(VALUES_THREADS)
         link_thread(${TARGET})
+    endif()
+
+    if(VALUES_CONAN_MODULES)
+        message(STATUS "Link conan libs")
+        target_link_libraries(${TARGET} ${CONAN_LIBS})
     endif()
 
     clang_tidy_analysis(${TARGET})

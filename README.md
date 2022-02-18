@@ -4,6 +4,9 @@ Cmake scripts for build c++ projects
 
 ## Flags
 
+### `FIND_CONAN`
+Find conanfile in project
+
 ### `FIND_MODULES`
 Find modules in folder `modules`.
 
@@ -27,6 +30,7 @@ Examle: `-DENABLE_TIDY=ON`
 \
  |--CMakeList.txt
  |--cmake
+ |--conanfile.txt
  |--modules
  |         \ 
  |          |--Modules1--CMakeLists.txt
@@ -49,6 +53,7 @@ include(cmake/make.cmake)
 #TARGET - project name
 #SOURCES - path to source
 #THREADS - threads module to add project
+#CONAN_MODULES - conan modules to add project
 #BOOST - list of boost modules to add project
 #MODULES - list of own modules to add project
 #LIBS - list of external modules to add project
@@ -56,6 +61,7 @@ include(cmake/make.cmake)
 executable(${PROJECT_NAME}
             SOURCES ""
             THREADS
+            CONAN_MODULES
             BOOST system
             MODULES Modules1 Modules2
             LIBS ... ...)
@@ -69,6 +75,7 @@ include(cmake/make.cmake)
 static_library(${PROJECT_NAME}
                 SOURCES ""
                 THREADS
+                CONAN_MODULES
                 BOOST ... ...
                 MODULES ... ...
                 LIBS ... ...)
@@ -82,6 +89,7 @@ include(cmake/make.cmake)
 shared_library(${PROJECT_NAME} 
                 SOURCES ""
                 THREADS
+                CONAN_MODULES
                 BOOST ... ...
                 MODULES ... ...
                 LIBS ... ...)
