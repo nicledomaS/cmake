@@ -13,7 +13,12 @@ include(${CMAKE_CURRENT_LIST_DIR}/make/library.cmake)
 
 include(${CMAKE_CURRENT_LIST_DIR}/make/utils.cmake)
 include(${CMAKE_CURRENT_LIST_DIR}/make/find_modules.cmake)
+include(${CMAKE_CURRENT_LIST_DIR}/make/conan_modules.cmake)
 include(${CMAKE_CURRENT_LIST_DIR}/make/find_tests.cmake)
+
+if(FIND_CONAN)
+    find_conan()
+endif()
 
 if(FIND_MODULES)
     find_modules()
