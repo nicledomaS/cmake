@@ -6,11 +6,12 @@ macro(find_conan)
     endif()
 
     message(STATUS "Install conan packages")
+
+    # add for install system requires "-e CONAN_SYSREQUIRES_MODE=enabled" 
     execute_process(
-        COMMAND ${CONAN} install . -if ${CMAKE_BINARY_DIR} --build missing
+        COMMAND ${CONAN} install . -if ${CMAKE_BINARY_DIR} --update --build missing -e CONAN_SYSREQUIRES_MODE=enabled
         WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
 
-    include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
-    conan_basic_setup()
+    include(${CMAKE_BINARY_DIR}/conan_paths.cmake)
 endmacro()
 

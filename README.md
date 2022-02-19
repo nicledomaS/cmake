@@ -45,6 +45,22 @@ Examle: `-DENABLE_TIDY=ON`
 ```
 
 ## Examples:
+conanfile.txt
+```
+[requires]
+toml11/3.7.0
+
+[generators]
+cmake_paths
+cmake_find_package
+
+[options]
+```
+Conan documentatio:
+https://docs.conan.io/en/1.46/reference/generators.html
+https://docs.conan.io/en/1.46/integrations/build_system/cmake.html
+
+
 Executable
 ```cmake
 project(TestApp)
@@ -53,7 +69,7 @@ include(cmake/make.cmake)
 #TARGET - project name
 #SOURCES - path to source
 #THREADS - threads module to add project
-#CONAN_MODULES - conan modules to add project
+#CONAN_MODULES - list of conan modules to add project
 #BOOST - list of boost modules to add project
 #MODULES - list of own modules to add project
 #LIBS - list of external modules to add project
@@ -61,7 +77,7 @@ include(cmake/make.cmake)
 executable(${PROJECT_NAME}
             SOURCES ""
             THREADS
-            CONAN_MODULES
+            CONAN_MODULES toml11
             BOOST system
             MODULES Modules1 Modules2
             LIBS ... ...)
@@ -75,7 +91,7 @@ include(cmake/make.cmake)
 static_library(${PROJECT_NAME}
                 SOURCES ""
                 THREADS
-                CONAN_MODULES
+                CONAN_MODULES ... ...
                 BOOST ... ...
                 MODULES ... ...
                 LIBS ... ...)
@@ -89,7 +105,7 @@ include(cmake/make.cmake)
 shared_library(${PROJECT_NAME} 
                 SOURCES ""
                 THREADS
-                CONAN_MODULES
+                CONAN_MODULES ... ...
                 BOOST ... ...
                 MODULES ... ...
                 LIBS ... ...)
