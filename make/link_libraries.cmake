@@ -57,3 +57,18 @@ function(link_thread TARGET)
     message(STATUS "Link threads") 
     target_link_libraries(${TARGET} ${CMAKE_THREAD_LIBS_INIT})
 endfunction(link_thread)
+
+function(link_conan_module TARGET)
+    set(PARAMS TARGET LIBRARY_NAME)
+    cmake_parse_arguments(VALUE "" "${PARAMS}" "" ${ARGN})
+
+    if("${TARGET}" STREQUAL "")
+        set(TARGET ${PROJECT_NAME})
+    endif()
+
+    message(STATUS "Link conan module: ${VALUE_LIBRARY_NAME}")
+    
+    find_package(${VALUE_LIBRARY_NAME})
+    target_include_directories(${TARGET} PRIVATE ${${VALUE_LIBRARY_NAME}_INCLUDE_DIRS})
+    target_link_libraries(${TARGET} ${${VALUE_LIBRARY_NAME}_LIBRARIES})
+endfunction(link_conan_module)
