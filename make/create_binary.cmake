@@ -24,7 +24,10 @@ function(create_binary TARGET TYPE)
         message(FATAL_ERROR "Target is empty")
     endif()
 
-    file(GLOB SOURCES "${VALUES_SOURCES}/*.*")
+    foreach(SRC ${VALUES_SOURCES})
+        file(GLOB SOURCE "${SRC}/*.*")
+        set(SOURCES ${SOURCES} ${SOURCE})
+    endforeach()
 
     if("${TYPE}" STREQUAL "executable")
         add_executable(${TARGET} ${SOURCES})

@@ -7,7 +7,7 @@ macro(find_conan)
 
     message(STATUS "Install conan packages")
     execute_process(
-        COMMAND ${CONAN} install . -if ${CMAKE_BINARY_DIR} --build missing
+        COMMAND ${CONAN} install . -if ${CMAKE_BINARY_DIR} -s build_type=${CMAKE_BUILD_TYPE} --update --build missing
         WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
 
     include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
